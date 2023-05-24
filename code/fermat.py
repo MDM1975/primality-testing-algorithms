@@ -1,9 +1,10 @@
 import random
 
+
 def fermat(p, k=1):
     if p <= 1 or p % 2 == 0:
         return False
-    
+
     if p == 2 or p == 3:
         return True
 

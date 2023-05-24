@@ -1,5 +1,6 @@
 import math
 
+
 def trial_division(n):
     if n <= 1 or n % 2 == 0:
         return False
