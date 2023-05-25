@@ -1,12 +1,11 @@
 # Primality Testing Algorithms
-This repository contains the implementation of four different primality testing algorithms:
+This repository comprehensively implements four primality testing algorithms: Fermat's Primality Test, Miller-Rabin Primality Test, Agrawal-Kayal-Saxena (AKS) Primality Test, and Trial Division. These algorithms play a crucial role in computer science and mathematics, particularly in cryptography, where prime numbers are essential for generating and identifying cryptographic keys. Prime numbers have applications in number theory, quantum mechanics, and encryption algorithms.
 
-* Fermat's Primality Test
-* Miller-Rabin Primality Test
-* Agrawal-Kayal-Saxena (AKS) Primality Test
-* Trial Division
+The project caters to the educational needs of students studying primality testing in number theory or computer science and researchers interested in the theoretical aspects of prime numbers and primality testing. Developers needing to incorporate primality testing in their software applications can also find this repository valuable.
 
-The repository includes a Python implementation of each algorithm and a data generator for generating test numbers of varying sizes for evaluating the performance of each algorithm.
+Each algorithm is implemented as a separate Python script that can be executed independently, providing flexibility in usage. The project also includes a data generator that creates test numbers of varying sizes, making it easier for those wishing to compare the performance of these different algorithms.
+
+Furthermore, the repository features an in-depth analysis of the algorithms' performance and efficiency, presented through tabular data and graphical plots. This analysis is helpful for educators needing illustrative material for teaching, researchers conducting comparative studies, and developers making informed decisions about which primality test to use in their applications.
 
 ## Repository Structure
 ```zsh
@@ -41,51 +40,14 @@ The test first ensures $n \geq 1$, then checks if $n$ is a perfect power (thus n
 If satisfied, $n$ is prime. Its time complexity is $O(log^6 n)$. While noted for theoretical importance as the first deterministic primality test, AKS is not the most efficient, and probabilistic tests, like Miller-Rabin, can often prove superior.
 
 ## Performance Evaluation
-This table presents the execution times (in seconds) of four primality testing algorithms - Fermat's, Miller-Rabin, AKS, and Trial Division–for numbers of varying digit lengths.
+The tabulated data in the following segment represents an empirical analysis of four major primality testing algorithms—Fermat's test, Miller-Rabin test, Agrawal-Kayal-Saxena (AKS) test, and Trial Division. We evaluated these algorithms based on their execution times (in seconds) against a range of input magnitudes, from 1 to 300 digits. This examination aims to determine the suitability of these algorithms for different ranges of numbers and their performance characteristics.
 
-In general, as the digit length of the tested number increases, the execution time of all algorithms also increases. For smaller digit lengths (1 to 17 digits), all algorithms are feasible with relatively low execution times.
+The results demonstrate a direct correlation between the digit length of the input and the execution time of the algorithms. This relationship is particularly noteworthy for larger input sizes. Among the tests, Fermat's and Miller-Rabin's exhibited similar computational complexities and demonstrated manageable increments in execution time, even when the input magnitude reached 300 digits. Their performance underlines their practicality for primality testing of extensive numeric inputs.
 
-Fermat's test and Miller-Rabin's test show similar time complexity, exhibiting relatively consistent and manageable increases in execution time, even as the digit length increases to 300. These algorithms remain practical for large numbers.
+The AKS test exhibited a consistent increase in execution time as the numeric magnitude rose. However, the rate of this increase was more steep compared to Fermat's and Miller-Rabin's tests, notably for more significant digit numbers. Therefore, while AKS is suitable for smaller numeric magnitudes, it is less efficient for testing the primality of more significant numbers, which is critical to consider when selecting a primality testing algorithm.
 
-The AKS test also shows a steady increase in time with increased digit length. However, its execution time rises more sharply than Fermat's and the Miller-Rabin test, especially for numbers with higher digit lengths, indicating it might be less efficient for more significant numbers.
+On the other hand, the Trial Division algorithm manifested a significant increase in execution time for even moderately large numbers, becoming impractical for inputs above 18 digits. Beyond this point, the execution time rises drastically, rendering the algorithm unsuitable for larger magnitudes.
 
-Trial Division, on the other hand, becomes impractical for larger numbers. For numbers up to 18 digits, the execution time increases faster than the other algorithms. Beyond 18 digits, the execution time becomes infeasibly high (represented as 'inf'), suggesting that the algorithm cannot handle numbers of this magnitude effectively.
-
-In summary, for testing the primality of large numbers, Fermat's test and the Miller-Rabin test offer the most efficient performance. In contrast, the AKS test could be more efficient, and Trial Division could be more practical.
-
-Digits | Fermat | Miller-Rabin | AKS | Trial Division
-:---- |:--- |:--- |:--- |:---
-1 | 0.000016 | 0.000004 | 0.000008 | 0.000002       
-2 | 0.000007 | 0.000003 | 0.000011 | 0.000001       
-3 | 0.000006 | 0.000004 | 0.000009 | 0.000001       
-4 | 0.000003 | 0.000004 | 0.000011 | 0.000002       
-5 | 0.000003 | 0.000003 | 0.000017 | 0.000005       
-6 | 0.000004 | 0.000003 | 0.000022 | 0.000018       
-7 | 0.000004 | 0.000004 | 0.000030 | 0.000061       
-8 | 0.000005 | 0.000004 | 0.000038 | 0.001114       
-9 | 0.000005 | 0.000004 | 0.000043 | 0.000515       
-10 | 0.000734 | 0.000015 | 0.000065 | 0.009271       
-11 | 0.000019 | 0.000014 | 0.000079 | 0.014000       
-12 | 0.000015 | 0.000015 | 0.000082 | 0.054911       
-13 | 0.000016 | 0.000014 | 0.000101 | 0.106705       
-14 | 0.000026 | 0.000020 | 0.000123 | 0.145269       
-15 | 0.000028 | 0.000016 | 0.000141 | 0.851116       
-16 | 0.000033 | 0.000023 | 0.000185 | 1.760991       
-17 | 0.000033 | 0.000022 | 0.000178 | 4.813058       
-18 | 0.000036 | 0.000023 | 0.000236 | 20.029892      
-19 | 0.000042 | 0.000035 | 0.000237 | inf            
-20 | 0.000026 | 0.000026 | 0.000222 | inf            
-21 | 0.000029 | 0.000029 | 0.000247 | inf            
-22 | 0.000029 | 0.000028 | 0.000256 | inf            
-23 | 0.000030 | 0.000029 | 0.000290 | inf            
-24 | 0.000036 | 0.000032 | 0.000309 | inf            
-25 | 0.000029 | 0.000029 | 0.000318 | inf            
-50 | 0.000143 | 0.000128 | 0.001368 | inf            
-75 | 0.000380 | 0.000375 | 0.003230 | inf            
-100 | 0.000831 | 0.000821 | 0.005820 | inf            
-150 | 0.002301 | 0.002335 | 0.013559 | inf            
-200 | 0.004950 | 0.004996 | 0.025594 | inf            
-250 | 0.007799 | 0.007960 | 0.044614 | inf            
-300 | 0.013813 | 0.013682 | 0.057153 | inf            
+Based on this evaluation, Fermat's and Miller-Rabin's tests emerge as the most efficient algorithms for large-scale primality testing. Nevertheless, for smaller number magnitudes, the AKS test can provide more efficiency, and the Trial Division method might be more practical. These observations provide significant insights for users when selecting the appropriate primality testing algorithm based on the digit length of their inputs.          
 
 ![](./docs/primality_testing_performance.png)
