@@ -66,9 +66,22 @@ def print_and_plot_results(primes, time_fermat, time_rabin_miller, time_aks, tim
     plot.plot(digit_lengths, time_aks, label='AKS')
     plot.plot(digit_lengths, time_trial_division, label='Trial Division')
     plot.xlabel('Digits')
-    plot.ylabel('Execution Time (s)')
+    plot.ylabel('Logarithmic Execution Time (s)')
+    plot.yscale('log')
     plot.title('Primality Testing Performance')
     plot.legend()
+    plot.figtext(
+        0.5,
+        0.01,
+        'Figure: Execution time comparison for Fermat, Miller-Rabin, AKS, and Trial Division primality tests across different number sizes (in digits). Logarithmic scale used on the y-axis for clearer visualization of time differences due to large disparity in execution times. Fermat, Miller-Rabin, and AKS tests show moderate time increases with number size, while Trial Division shows a more dramatic time increase, becoming unfeasible after 18 digits.',
+        fontsize=10,
+        ha='center',
+        va='bottom',
+        wrap=True,
+        bbox={"facecolor": "lightgrey", "alpha": 0.7, "pad": 5}
+    )
+    plot.subplots_adjust(bottom=0.2)
+    plot.savefig('primality_testing_performance.png', dpi=300)
     plot.show()
 
 

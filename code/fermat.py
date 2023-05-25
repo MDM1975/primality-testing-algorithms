@@ -1,7 +1,7 @@
 import random
 
 
-def fermat(p, k=1):
+def fermat(p, k=3):
     if p <= 1 or p % 2 == 0:
         return False
 

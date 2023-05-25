@@ -1,7 +1,7 @@
 import random
 
 
-def miller_rabin(num, k=1):
+def miller_rabin(num, k=3):
     if num <= 1 or num % 2 == 0:
         return False
 
