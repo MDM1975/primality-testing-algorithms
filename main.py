@@ -1,5 +1,5 @@
 import time
-# import matplotlib.pyplot as plot
+import matplotlib.pyplot as plot
 from code.primes import primes
 from code.trial_division import trial_division
 from code.fermat import fermat
@@ -18,7 +18,7 @@ def speed_test():
         time_miller_rabin.append(time_execution(miller_rabin, prime))
         time_aks.append(time_execution(aks, prime))
 
-        if len(str(prime)) <= 10:
+        if len(str(prime)) <= 18:
             time_trial_division.append(time_execution(trial_division, prime))
         else:
             time_trial_division.append(None)
@@ -60,16 +60,16 @@ def print_and_plot_results(primes, time_fermat, time_rabin_miller, time_aks, tim
             else float('inf')
         ))
 
-    # plot.figure(figsize=(10, 6))
-    # plot.plot(digit_lengths, time_fermat, label='Fermat')
-    # plot.plot(digit_lengths, time_rabin_miller, label='Rabin-Miller')
-    # plot.plot(digit_lengths, time_aks, label='AKS')
-    # plot.plot(digit_lengths, time_trial_division, label='Trial Division')
-    # plot.xlabel('Digits')
-    # plot.ylabel('Execution Time (s)')
-    # plot.title('Primality Testing Performance')
-    # plot.legend()
-    # plot.show()
+    plot.figure(figsize=(10, 6))
+    plot.plot(digit_lengths, time_fermat, label='Fermat')
+    plot.plot(digit_lengths, time_rabin_miller, label='Rabin-Miller')
+    plot.plot(digit_lengths, time_aks, label='AKS')
+    plot.plot(digit_lengths, time_trial_division, label='Trial Division')
+    plot.xlabel('Digits')
+    plot.ylabel('Execution Time (s)')
+    plot.title('Primality Testing Performance')
+    plot.legend()
+    plot.show()
 
 
 speed_test()
