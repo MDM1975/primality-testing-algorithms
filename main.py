@@ -1,43 +1,34 @@
 import time
 import matplotlib.pyplot as plot
-from code.primes import primes
-from code.trial_division import trial_division
-from code.fermat import fermat
-from code.miller_rabin import miller_rabin
-from code.aks import aks
+from data.primes import primes
+from src.trial_division import trial_division
+from src.fermat import fermat
+from src.miller_rabin import miller_rabin
+from src.aks import aks
 
-
-def speed_test():
-    time_fermat = []
-    time_miller_rabin = []
-    time_aks = []
-    time_trial_division = []
+def main():
+    fermat_times = []
+    miller_rabin_times = []
+    aks_times = []
+    trial_division_times = []
 
     for prime in primes:
-        time_fermat.append(time_execution(fermat, prime))
-        time_miller_rabin.append(time_execution(miller_rabin, prime))
-        time_aks.append(time_execution(aks, prime))
+        fermat_times.append(get_execution_time(fermat, prime))
+        miller_rabin_times.append(get_execution_time(miller_rabin, prime))
+        aks_times.append(get_execution_time(aks, prime))
 
         if len(str(prime)) <= 18:
-            time_trial_division.append(time_execution(trial_division, prime))
+            trial_division_times.append(get_execution_time(trial_division, prime))
         else:
-            time_trial_division.append(None)
+            trial_division_times.append(None)
 
-    print_and_plot_results(
-        primes,
-        time_fermat,
-        time_miller_rabin,
-        time_aks,
-        time_trial_division
-    )
+    print_and_plot_results(primes, fermat_times, miller_rabin_times, aks_times, trial_division_times)
 
-
-def time_execution(primality_test, prime):
+def get_execution_time(function, input):
     start_time = time.process_time()
-    primality_test(prime)
+    function(input)
     end_time = time.process_time()
     return end_time - start_time
-
 
 def print_and_plot_results(primes, time_fermat, time_rabin_miller, time_aks, time_trial_division):
     digit_lengths = [len(str(p)) for p in primes]
@@ -73,7 +64,11 @@ def print_and_plot_results(primes, time_fermat, time_rabin_miller, time_aks, tim
     plot.figtext(
         0.5,
         0.01,
-        'Figure: Execution time comparison for Fermat, Miller-Rabin, AKS, and Trial Division primality tests across different number sizes (in digits). Logarithmic scale used on the y-axis for clearer visualization of time differences due to large disparity in execution times. Fermat, Miller-Rabin, and AKS tests show moderate time increases with number size, while Trial Division shows a more dramatic time increase, becoming unfeasible after 18 digits.',
+        'Figure: Execution time comparison for Fermat, Miller-Rabin, AKS, and Trial Division primality ' +
+        'tests across different number sizes (in digits). Logarithmic scale used on the y-axis for clearer ' +
+        'visualization of time differences due to large disparity in execution times. Fermat, Miller-Rabin, ' +
+        'and AKS tests show moderate time increases with number size, while Trial Division shows a more ' +
+        'dramatic time increase, becoming unfeasible after 18 digits.',
         fontsize=10,
         ha='center',
         va='bottom',
@@ -85,4 +80,4 @@ def print_and_plot_results(primes, time_fermat, time_rabin_miller, time_aks, tim
     plot.show()
 
 
-speed_test()
+main()
